@@ -27,42 +27,40 @@ const Form = (props) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        if (formData.enteredProgress !== '') {
-            const id = `e${props.arrLength + 1}`;
+        const id = `e${props.arrLength + 1}`;
 
-            const inputData = {
-                id: id,
-                text: formData.enteredText,
-                date: formData.enteredDate,
-                progress: formData.enteredProgress
-            }
-            console.log(inputData);
-
-            props.onSaveForm(inputData);
-            setFormData({
-                enteredText: '',
-                enteredDate: '',
-                enteredProgress: ''
-            }
-            )
+        const inputData = {
+            id: id,
+            text: formData.enteredText,
+            date: formData.enteredDate,
+            progress: formData.enteredProgress
         }
+        console.log(inputData);
+
+        props.onSaveForm(inputData);
+        setFormData({
+            enteredText: '',
+            enteredDate: '',
+            enteredProgress: ''
+        }
+        )
     }
 
 
     return <form className={styles.form} onSubmit={submitHandler}>
         <label>Tudo:</label>
-        <input type="text" name="Tudo" onChange={onChangeText} />
+        <input type="text" name="Tudo" value={formData.enteredText} onChange={onChangeText} required />
         <label type="date" >Finish Date:</label>
-        <input type="date" onChange={onChangeDate} />
+        <input type="date" value={formData.enteredDate} onChange={onChangeDate} required />
         <label>Progress:</label>
-        <select name="" id="" onChange={onChangeProgress}>
-            <option value="">--Please choose an option--</option>
-            <option value="progress">In Progress</option>
+        <select value={formData.enteredProgress} onChange={onChangeProgress} required>
+            <option value="">--Please Select an Option--</option>
             <option value="unfinished">Unfinished</option>
+            <option value="progress">In Progress</option>
             <option value="finished">Finished</option>
         </select>
         <button type="submit">Submit</button>
-    </form>
+    </form >
 }
 
 export default Form;
