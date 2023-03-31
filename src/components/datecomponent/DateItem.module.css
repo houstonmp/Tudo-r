@@ -1,0 +1,11 @@
+.date {
+    width: 4rem;
+    height: 4rem;
+    background-color: #D9D9D9;
+    text-align: center;
+}
+
+.date-text {
+    margin: 0;
+    padding: 0;
+}
