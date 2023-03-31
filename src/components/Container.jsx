@@ -25,6 +25,8 @@ const INITIAL_TODO = [
 
 const Container = () => {
     const [TodoArr, setTodoArr] = useState(INITIAL_TODO);
+    const [isDisplay, setDisplay] = useState(true);
+
 
 
 
@@ -32,16 +34,38 @@ const Container = () => {
         setTodoArr((prevState) => {
             return [formData, ...prevState]
         })
+        showDisplay(true);
+    }
+
+    const showDisplay = (isValid) => {
+        setDisplay(isValid);
+    }
+
+    const deleteHandler = (event) => {
+        const newArr = TodoArr.filter((el) => {
+            return el.id !== event.target.parentNode.parentNode.id;
+        })
+
+        if (newArr.length === 0) {
+            setTodoArr([]);
+            showDisplay(false);
+            console.log('false');
+        }
+        else {
+            setTodoArr([...newArr])
+            showDisplay(true);
+            console.log('true');
+        }
     }
 
     return (
         <div className='container'>
             <section>
                 <Form onSaveForm={formHandler} arrLength={TodoArr.length}></Form>
-                <DateManager></DateManager>
+                <DateManager ></DateManager>
             </section>
             <section>
-                <TodoMan TodoArr={TodoArr}></TodoMan>
+                <TodoMan isDisplay={isDisplay} TodoArr={TodoArr} delTodo={deleteHandler}></TodoMan>
             </section>
         </div>
 

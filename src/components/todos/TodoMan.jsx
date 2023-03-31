@@ -1,4 +1,4 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 import './TodoMan.css';
 import Todo from './Todo'
 
@@ -8,15 +8,16 @@ import Todo from './Todo'
 
 const TodoMan = (props) => {
 
+
     return (
         <article className='todo-man'>
-            <button className="button">Add Tudo</button>
-            {props.TodoArr.map((el) => {
+            {!props.isDisplay ? <h2>What are you going <span>Tudo</span> today?</h2> : props.TodoArr.map((el) => {
                 return <Todo
                     id={el.id}
                     key={el.id}
                     text={el.text}
                     progress={el.progress}
+                    onDel={props.delTodo}
                 />;
             })}
 

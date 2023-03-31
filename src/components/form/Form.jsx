@@ -59,7 +59,7 @@ const Form = (props) => {
             <option value="progress">In Progress</option>
             <option value="finished">Finished</option>
         </select>
-        <button type="submit">Submit</button>
+        <button className="button" type="submit">Add Tudo</button>
     </form >
 }
 

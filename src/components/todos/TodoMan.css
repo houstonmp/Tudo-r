@@ -5,7 +5,7 @@ article {
 
 .todo-man {
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     height: 40vh;
 }
 
@@ -49,14 +49,20 @@ aside.unfinished {
         'wght' 400,
         'GRAD' 0,
         'opsz' 48;
-    flex-basis: 30px;
+    /* margin: 1em 0; */
+}
+
+.icons {
+    flex-basis: 40px;
     flex-grow: 0;
-    margin: 1em 0;
+}
+
+.icons:hover {
+    cursor: pointer;
+    color: black;
 }
 
 .button {
-    position: absolute;
-    top: 0;
     align-self: center;
     display: inline-block;
     outline: 0;
@@ -75,4 +81,13 @@ aside.unfinished {
 .button:hover {
     background-color: #705a3d;
     transform: translateY(-2px);
+}
+
+article h2 {
+    text-align: center;
+    color: #3e3529;
+}
+
+h2 span {
+    color: #0F5D46;
 }

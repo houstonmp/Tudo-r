@@ -2,16 +2,22 @@ import './TodoMan.css';
 
 const Todo = (props) => {
     return (
-        <aside className={props.progress}>
+        <aside id={props.id} className={props.progress}>
             <span className='text'>
                 <h3 >{props.text}</h3>
             </span>
-            <span className="material-symbols-outlined icons">
-                edit
-            </span>
-            <span className="material-symbols-outlined icons">
-                delete
-            </span>
+            <a href=""></a>
+            <a className="icons">
+                <span className="material-symbols-outlined ">
+                    edit
+                </span>
+            </a>
+            <a className="icons" onClick={props.onDel}>
+                <span className="material-symbols-outlined ">
+                    delete
+                </span>
+            </a>
+
         </aside>
     )
 }
