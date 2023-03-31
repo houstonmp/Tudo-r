@@ -1,19 +1,18 @@
-import './Todo.css';
+import './TodoMan.css';
 
-const Todo = () => {
+const Todo = (props) => {
     return (
-        <article className='todo-man'>
-            <button className="button">Add Tudo</button>
-            <aside className={'finished'}>
-                <h3>Cook Dinner</h3>
-            </aside>
-            <aside className='progress'>
-                <h3>Cook Dinner</h3>
-            </aside>
-            <aside className='unfinished'>
-                <h3>Cook Dinner</h3>
-            </aside>
-        </article>
+        <aside className={props.progress}>
+            <span className='text'>
+                <h3 >{props.text}</h3>
+            </span>
+            <span className="material-symbols-outlined icons">
+                edit
+            </span>
+            <span className="material-symbols-outlined icons">
+                delete
+            </span>
+        </aside>
     )
 }
 export default Todo;
