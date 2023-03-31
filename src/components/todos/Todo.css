@@ -1,6 +1,6 @@
 article {
     display: flex;
-
+    position: relative;
 }
 
 .todo-man {
@@ -21,6 +21,10 @@ aside {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+/* aside h3 {
+    text-align: center;
+} */
+
 aside.finished {
     background-color: #0F5D46;
 }
@@ -31,4 +35,27 @@ aside.progress {
 
 aside.unfinished {
     background-color: #8C0301;
+}
+
+.button {
+    position: absolute;
+    top: 0;
+    align-self: center;
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    background: #3e3529;
+    color: white;
+    border-radius: 8px;
+    padding: 14px 24px 16px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    transition: transform 200ms, background 200ms;
+}
+
+.button:hover {
+    background-color: #705a3d;
+    transform: translateY(-2px);
 }

@@ -3,14 +3,15 @@ import './Todo.css';
 const Todo = () => {
     return (
         <article className='todo-man'>
+            <button className="button">Add Tudo</button>
             <aside className={'finished'}>
-                Cook Dinner
+                <h3>Cook Dinner</h3>
             </aside>
             <aside className='progress'>
-                Eat Dinner
+                <h3>Cook Dinner</h3>
             </aside>
             <aside className='unfinished'>
-                Wash Dishes
+                <h3>Cook Dinner</h3>
             </aside>
         </article>
     )
