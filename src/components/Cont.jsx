@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import TodoMan from './todos/TodoMan'
-import './Container.css'
+import './Cont.css'
 import DateManager from './datecomponent/DateManager';
 import Form from './form/Form'
 
