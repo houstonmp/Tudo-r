@@ -48,17 +48,27 @@ const Form = (props) => {
 
 
     return <form className={styles.form} onSubmit={submitHandler}>
-        <label>Tudo:</label>
-        <input type="text" name="Tudo" value={formData.enteredText} onChange={onChangeText} required />
-        <label type="date" >Finish Date:</label>
-        <input type="date" value={formData.enteredDate} onChange={onChangeDate} required />
-        <label>Progress:</label>
-        <select value={formData.enteredProgress} onChange={onChangeProgress} required>
-            <option value="">--Please Select an Option--</option>
-            <option value="unfinished">Unfinished</option>
-            <option value="progress">In Progress</option>
-            <option value="finished">Finished</option>
-        </select>
+
+        <div className={styles.inputItem}>
+            <label>Tudo:</label>
+            <input type="text" name="Tudo" value={formData.enteredText} placeholder="Tudo" onChange={onChangeText} required />
+
+        </div>
+        <div className={styles.inputItem}>
+            <label type="date" >Finish By:</label>
+            <input type="date" value={formData.enteredDate} placeholder="Finish Date: mm/dd.yyyy" onChange={onChangeDate} required />
+        </div>
+
+        <div className={styles.inputItem}>
+            <label>Progress:</label>
+            <select value={formData.enteredProgress} onChange={onChangeProgress} required>
+                <option value="">--Please Select an Option--</option>
+                <option value="unfinished">Unfinished</option>
+                <option value="progress">In Progress</option>
+                <option value="finished">Finished</option>
+            </select>
+        </div>
+
         <button className="button" type="submit">Add Tudo</button>
     </form >
 }
