@@ -1,0 +1,16 @@
+nav {
+    background-color: #3e3529;
+    color: white;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+nav h1 {
+    text-align: center;
+    font-family: 'Junge', serif;
+    font-size: 3rem;
+    margin: 0;
+}

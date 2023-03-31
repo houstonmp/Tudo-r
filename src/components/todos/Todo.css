@@ -1,0 +1,20 @@
+article {
+    display: flex;
+    flex-direction: column;
+}
+
+aside {
+    height: 50px;
+}
+
+aside.finished {
+    background-color: #0F5D46;
+}
+
+aside.progress {
+    background-color: #986E26;
+}
+
+aside.unfinished {
+    background-color: #8C0301;
+}
