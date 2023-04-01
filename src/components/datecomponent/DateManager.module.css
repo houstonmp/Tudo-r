@@ -4,3 +4,13 @@
     justify-content: space-around;
     margin: 2rem 0;
 }
+
+.filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.filter * {
+    margin: 15px;
+}

@@ -68,8 +68,9 @@ const Form = (props) => {
                 <option value="finished">Finished</option>
             </select>
         </div>
-
-        <button className="button" type="submit">Add Tudo</button>
+        <div className='submitItem'>
+            <button className="button" type="submit">Add Tudo</button>
+        </div>
     </form >
 }
 

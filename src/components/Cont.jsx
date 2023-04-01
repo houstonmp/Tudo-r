@@ -65,7 +65,7 @@ const Container = () => {
                 <DateManager ></DateManager>
             </section>
             <section>
-                <TodoMan isDisplay={isDisplay} TodoArr={TodoArr} delTodo={deleteHandler}></TodoMan>
+                <TodoMan isDisplay={isDisplay} TodoArr={TodoArr} delTodo={deleteHandler} ></TodoMan>
             </section>
         </div>
 
