@@ -9,7 +9,7 @@ import styles from './DateManager.module.css';
 const TODAYS_DATE = new Date();
 
 
-const DateManager = () => {
+const DateManager = (props) => {
 
     const [filterDate, setDate] = useState({
         month: TODAYS_DATE.getMonth(),
@@ -34,6 +34,7 @@ const DateManager = () => {
     const setDates = () => {
         if (filterDate.date < 5) {
             startDate = dateList[0].getDate();
+            //See if there is a better way to write code
             if (1 === filterDate.date) {
                 displayArrow = {
                     left: false,
@@ -58,6 +59,8 @@ const DateManager = () => {
         else if (filterDate.date > (dateList.length - 6)) {
             startDate = dateList[dateList.length - 5].getDate();
             endDate = dateList[dateList.length - 1].getDate();
+
+            //See if there is a better way to write code
             if (dateList.length === filterDate.date) {
                 displayArrow = {
                     left: true,
@@ -71,6 +74,7 @@ const DateManager = () => {
             }
 
         }
+        props.onLoadDate(filterDate.date, filterDate.month, filterDate.year);
     }
 
     const initDateArr = (month, year) => {
@@ -147,7 +151,6 @@ const DateManager = () => {
     }
     const moveRight = () => {
         setDate((prevState) => {
-            console.log(prevState + 1);
             return {
                 month: prevState.month,
                 year: prevState.year,

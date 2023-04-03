@@ -32,7 +32,7 @@ const Form = (props) => {
         const inputData = {
             id: id,
             text: formData.enteredText,
-            date: formData.enteredDate,
+            date: new Date(formData.enteredDate),
             progress: formData.enteredProgress
         }
         console.log(inputData);
