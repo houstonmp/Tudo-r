@@ -27,9 +27,6 @@ const Container = () => {
     const [TodoArr, setTodoArr] = useState(INITIAL_TODO);
     const [isDisplay, setDisplay] = useState(true);
 
-
-
-
     const formHandler = (formData) => {
         setTodoArr((prevState) => {
             return [formData, ...prevState]
@@ -62,7 +59,7 @@ const Container = () => {
         <div className='container'>
             <section>
                 <Form onSaveForm={formHandler} arrLength={TodoArr.length}></Form>
-                <DateManager ></DateManager>
+                <DateManager></DateManager>
             </section>
             <section>
                 <TodoMan isDisplay={isDisplay} TodoArr={TodoArr} delTodo={deleteHandler} ></TodoMan>

@@ -16,6 +16,7 @@ const TodoMan = (props) => {
                     id={el.id}
                     key={el.id}
                     text={el.text}
+                    date={el.date}
                     progress={el.progress}
                     onDel={props.delTodo}
                 />;

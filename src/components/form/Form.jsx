@@ -27,7 +27,7 @@ const Form = (props) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        const id = `e${props.arrLength + 1}`;
+        const id = `t${props.arrLength + 1}`;
 
         const inputData = {
             id: id,
