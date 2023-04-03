@@ -5,6 +5,10 @@
     margin: 2rem 0;
 }
 
+.date-man *:hover {
+    cursor: pointer;
+}
+
 .filter {
     display: flex;
     flex-direction: row;
@@ -13,4 +17,14 @@
 
 .filter * {
     margin: 15px;
+}
+
+.date-man span {
+    font-size: 3.5rem;
+    user-select: none;
+}
+
+.date-man span:hover {
+    color: #8b8b8b;
+    cursor: pointer;
 }
