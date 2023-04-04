@@ -9,6 +9,19 @@ const Form = (props) => {
     });
 
 
+    if (props.todoData !== undefined) {
+        if (props.todoData.text !== formData.enteredText) {
+            setFormData({
+                enteredText: props.todoData.text,
+                enteredDate: props.todoData.date,
+                enteredProgress: props.todoData.progress
+            });
+            console.log("Set data", props.todoData)
+        }
+    }
+
+
+
     const onChangeText = (event) => {
         setFormData((prev) => {
             return { ...prev, enteredText: event.target.value }
@@ -56,7 +69,7 @@ const Form = (props) => {
         </div>
         <div className={styles.inputItem}>
             <label type="date" >Finish By:</label>
-            <input type="date" value={formData.enteredDate} placeholder="Finish Date: mm/dd.yyyy" onChange={onChangeDate} required />
+            <input type="date" value={formData.enteredDate} placeholder="Finish Date: mm/dd/yyyy" onChange={onChangeDate} required />
         </div>
 
         <div className={styles.inputItem}>

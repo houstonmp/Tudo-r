@@ -61,8 +61,21 @@ const Container = () => {
     }
 
     const deleteFunction = (event) => {
+        let currentTodoId = event.target.parentNode.parentNode.id;
+        let oldItem = {};
         const newArr = TodoArr.filter((el) => {
-            return el.id !== event.target.parentNode.parentNode.id;
+            if (el.id !== currentTodoId) {
+                return el.id !== currentTodoId;
+            }
+            else {
+                oldItem = {
+                    id: el.id,
+                    text: el.text,
+                    date: el.date,
+                    progress: el.progress,
+                }
+            }
+
         })
 
         if (newArr.length === 0) {
@@ -75,6 +88,7 @@ const Container = () => {
             showDisplay(true);
             console.log('true');
         }
+        return oldItem;
     }
 
     //Modal
@@ -83,10 +97,18 @@ const Container = () => {
 
     let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [todoItem, setTodoItem] = useState({
+        id: '',
+        text: '',
+        date: '',
+        progress: '',
+    });
 
     function openModal(event) {
 
-        deleteFunction(event);
+        setTodoItem(deleteFunction(event));
+        setIsOpen(true);
+
         // let index = TodoArr.indexOf((el) => {
         //     return el.id === event.target.parentNode.parentNode.id;
         // })
@@ -106,7 +128,8 @@ const Container = () => {
         //     showDisplay(true);
         //     console.log('true');
         // }
-        setIsOpen(true);
+
+
     }
 
     function afterOpenModal() {
@@ -175,7 +198,7 @@ const Container = () => {
                 contentLabel="Edit Modal"
             >
                 <h1>Edit Data</h1>
-                <Form onSaveForm={closeModal} arrLength={TodoArr.length}></Form>
+                <Form onSaveForm={closeModal} arrLength={TodoArr.length} todoData={todoItem}></Form>
             </Modal>
             {/* <ModalForm></ModalForm> */}
             <section>
