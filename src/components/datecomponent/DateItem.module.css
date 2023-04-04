@@ -8,6 +8,10 @@
     justify-content: space-evenly;
 }
 
+.date:hover {
+    outline: 1px solid black;
+}
+
 .date-text {
     margin: 0;
     padding: 0;

@@ -11,11 +11,11 @@ const TODAYS_DATE = new Date();
 
 const DateManager = (props) => {
 
-    const [filterDate, setDate] = useState({
-        month: TODAYS_DATE.getMonth(),
-        year: TODAYS_DATE.getFullYear(),
-        date: TODAYS_DATE.getDate()
-    });
+    // const [filterDate, setDate] = useState({
+    //     month: TODAYS_DATE.getMonth(),
+    //     year: TODAYS_DATE.getFullYear(),
+    //     date: TODAYS_DATE.getDate()
+    // });
 
 
     // const [displayArrow, setArrow] = useState({
@@ -32,10 +32,10 @@ const DateManager = (props) => {
     let endDate = 5;
 
     const setDates = () => {
-        if (filterDate.date < 5) {
+        if (props.filterDate.date < 5) {
             startDate = dateList[0].getDate();
             //See if there is a better way to write code
-            if (1 === filterDate.date) {
+            if (1 === props.filterDate.date) {
                 displayArrow = {
                     left: false,
                     right: true
@@ -48,20 +48,20 @@ const DateManager = (props) => {
             }
 
         }
-        else if (filterDate.date >= 5 && filterDate.date < (dateList.length - 3)) {
-            startDate = filterDate.date - 2;
-            endDate = filterDate.date + 2;
+        else if (props.filterDate.date >= 5 && props.filterDate.date < (dateList.length - 3)) {
+            startDate = props.filterDate.date - 2;
+            endDate = props.filterDate.date + 2;
             displayArrow = {
                 left: true,
                 right: true
             }
         }
-        else if (filterDate.date > (dateList.length - 6)) {
+        else if (props.filterDate.date > (dateList.length - 6)) {
             startDate = dateList[dateList.length - 5].getDate();
             endDate = dateList[dateList.length - 1].getDate();
 
             //See if there is a better way to write code
-            if (dateList.length === filterDate.date) {
+            if (dateList.length === props.filterDate.date) {
                 displayArrow = {
                     left: true,
                     right: false
@@ -74,7 +74,7 @@ const DateManager = (props) => {
             }
 
         }
-        props.onLoadDate(filterDate.date, filterDate.month, filterDate.year);
+        // props.onLoadDate(filterDate.date, filterDate.month, filterDate.year);
     }
 
     const initDateArr = (month, year) => {
@@ -88,7 +88,7 @@ const DateManager = (props) => {
         return days;
     }
 
-    const dateList = initDateArr(filterDate.month, filterDate.year);
+    const dateList = initDateArr(props.filterDate.month, props.filterDate.year);
 
     const initOptions = () => {
         const currentYear = parseInt(TODAYS_DATE.getFullYear());
@@ -100,23 +100,23 @@ const DateManager = (props) => {
     }
 
     const monthHandler = (newMonth) => {
-        setDate((prevState) => {
+        props.onFilterDate((prevState) => {
             return {
                 month: parseInt(newMonth.target.value),
                 year: prevState.year,
                 date: 1
             }
-        })
+        });
     }
 
     const yearHandler = (newYear) => {
-        setDate((prevState) => {
+        props.onFilterDate((prevState) => {
             return {
                 month: prevState.month,
                 year: parseInt(newYear.target.value),
                 date: 1
             }
-        })
+        });
     }
 
     setDates();
@@ -140,27 +140,38 @@ const DateManager = (props) => {
     };
 
     const moveLeft = () => {
-        setDate((prevState) => {
+        props.onFilterDate((prevState) => {
             return {
                 month: prevState.month,
                 year: prevState.year,
                 date: (prevState.date - 1)
             }
-        })
+        });
         setDates();
     }
     const moveRight = () => {
-        setDate((prevState) => {
+        props.onFilterDate((prevState) => {
             return {
                 month: prevState.month,
                 year: prevState.year,
                 date: (prevState.date + 1)
             }
-        })
+        });
         setDates();
     }
 
-
+    const clickHandler = (event) => {
+        //Due to event bubbling you need to grab the event first before you assign it in the onFilterDate function which will be passed into the parent Component
+        let eventDate = event.currentTarget.children[1].textContent;
+        props.onFilterDate((prevState) => {
+            return {
+                month: prevState.month,
+                year: prevState.year,
+                date: parseInt(eventDate)
+            }
+        })
+        setDates();
+    }
 
 
 
@@ -172,8 +183,8 @@ const DateManager = (props) => {
         <div className='datePicker' onLoad={setDates}>
             <div className="filter">
                 <p>Filter by:</p>
-                <DateSelect valueType="month" value={filterDate.month} options={options.months} onSaveDate={monthHandler} />
-                <DateSelect valueType="year" value={filterDate.year} options={options.years} onSaveDate={yearHandler} />
+                <DateSelect valueType="month" value={props.filterDate.month} options={options.months} onSaveDate={monthHandler} />
+                <DateSelect valueType="year" value={props.filterDate.year} options={options.years} onSaveDate={yearHandler} />
             </div>
             <article className={`${styles['date-man']}`}>
                 {displayArrow.left && <span className="material-symbols-outlined" onClick={moveLeft}>
@@ -183,11 +194,11 @@ const DateManager = (props) => {
                 {
 
                     filterArr.map((el, index) => {
-                        if (filterDate.date === el.getDate()) {
-                            return <DateItem key={`${el.getDate()}-${filterDate.month}`} active="active" month={options.months[filterDate.month].slice(0, 3)} date={el.getDate()} />
+                        if (props.filterDate.date === el.getDate()) {
+                            return <DateItem onClickItem={clickHandler} key={`${el.getDate()}-${props.filterDate.month}`} active="active" month={options.months[props.filterDate.month].slice(0, 3)} date={el.getDate()} />
                         }
                         else {
-                            return <DateItem key={`${el.getDate()}-${filterDate.month}`} month={options.months[filterDate.month].slice(0, 3)} date={el.getDate()} />
+                            return <DateItem onClickItem={clickHandler} key={`${el.getDate()}-${props.filterDate.month}`} month={options.months[props.filterDate.month].slice(0, 3)} date={el.getDate()} />
                         }
                     })
                 }

@@ -8,7 +8,6 @@ import Todo from './Todo'
 
 const TodoMan = (props) => {
 
-
     return (
         <article className='todo-man'>
             {!props.isDisplay ? <h2>What are you going <span>Tudo</span> today?</h2> : props.TodoArr.map((el) => {
