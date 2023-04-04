@@ -60,21 +60,64 @@ const Container = () => {
         console.log('Set date Object', filterDate);
     }
 
+    const deleteFunction = (event) => {
+        const newArr = TodoArr.filter((el) => {
+            return el.id !== event.target.parentNode.parentNode.id;
+        })
+
+        if (newArr.length === 0) {
+            setTodoArr([]);
+            showDisplay(false);
+            console.log('false');
+        }
+        else {
+            setTodoArr([...newArr])
+            showDisplay(true);
+            console.log('true');
+        }
+    }
+
+    //Modal
+
     Modal.setAppElement('#root')
 
     let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
-    function openModal() {
+    function openModal(event) {
+
+        deleteFunction(event);
+        // let index = TodoArr.indexOf((el) => {
+        //     return el.id === event.target.parentNode.parentNode.id;
+        // })
+
+        // let ModalItem = TodoArr[index];
+
+
+
+
+        // if (newArr.length === 0) {
+        //     setTodoArr([]);
+        //     showDisplay(false);
+        //     console.log('false');
+        // }
+        // else {
+        //     setTodoArr([...newArr])
+        //     showDisplay(true);
+        //     console.log('true');
+        // }
         setIsOpen(true);
     }
 
     function afterOpenModal() {
         // references are now sync'd and can be accessed.
-        subtitle.style.color = '#f00';
     }
 
-    function closeModal() {
+    function closeModal(formData) {
+        setTodoArr((prevState) => {
+            return [formData, ...prevState]
+        })
+        showDisplay(true);
         setIsOpen(false);
     }
 
@@ -92,25 +135,8 @@ const Container = () => {
     }
 
     const deleteHandler = (event) => {
-        const newArr = TodoArr.filter((el) => {
-            return el.id !== event.target.parentNode.parentNode.id;
-        })
-
-        if (newArr.length === 0) {
-            setTodoArr([]);
-            showDisplay(false);
-            console.log('false');
-        }
-        else {
-            setTodoArr([...newArr])
-            showDisplay(true);
-            console.log('true');
-        }
+        deleteFunction(event);
     }
-
-
-    //ERROR: DATA continues to load regardless of filtered dates. Check this tomorrow
-
 
     const filterData = () => {
         return TodoArr.filter((el) => {
@@ -140,7 +166,7 @@ const Container = () => {
 
     return (
         <div className='container'>
-            <button onClick={openModal}>Open Modal</button>
+            {/* <button onClick={openModal}>Open Modal</button> */}
             <Modal
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}
@@ -149,7 +175,7 @@ const Container = () => {
                 contentLabel="Edit Modal"
             >
                 <h1>Edit Data</h1>
-                <Form></Form>
+                <Form onSaveForm={closeModal} arrLength={TodoArr.length}></Form>
             </Modal>
             {/* <ModalForm></ModalForm> */}
             <section>
@@ -157,7 +183,7 @@ const Container = () => {
                 <DateManager filterDate={filterDate} onFilterDate={dateHandler}></DateManager>
             </section>
             <section>
-                <TodoMan isDisplay={isDisplay} TodoArr={filteredArr} delTodo={deleteHandler} ></TodoMan>
+                <TodoMan onEdit={openModal} isDisplay={isDisplay} TodoArr={filteredArr} delTodo={deleteHandler} ></TodoMan>
             </section>
         </div>
 

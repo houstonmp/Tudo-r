@@ -18,6 +18,7 @@ const TodoMan = (props) => {
                     date={el.date}
                     progress={el.progress}
                     onDel={props.delTodo}
+                    onEdit={props.onEdit}
                 />;
             })}
 

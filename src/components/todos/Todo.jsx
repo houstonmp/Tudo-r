@@ -7,7 +7,7 @@ const Todo = (props) => {
                 <h3 >{props.text}</h3>
             </span>
             <a href=""></a>
-            <a className="icons">
+            <a className="icons" onClick={props.onEdit}>
                 <span className="material-symbols-outlined ">
                     edit
                 </span>
