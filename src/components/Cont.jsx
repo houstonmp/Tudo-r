@@ -5,7 +5,6 @@ import './Cont.css'
 import DateManager from './datecomponent/DateManager';
 import Form from './form/Form'
 import Modal from 'react-modal';
-// import ModalForm from './form/ModalForm';
 
 const customStyles = {
     content: {
@@ -51,13 +50,8 @@ const Container = () => {
         date: TODAYS_DATE.getDate()
     });
 
-    // const fetchDate = (date) => {
-
-    // }
-
     const dateHandler = (dateObj) => {
         setDate(dateObj);
-        console.log('Set date Object', filterDate);
     }
 
     const deleteFunction = (event) => {
@@ -81,17 +75,13 @@ const Container = () => {
         if (newArr.length === 0) {
             setTodoArr([]);
             showDisplay(false);
-            console.log('false');
         }
         else {
             setTodoArr([...newArr])
             showDisplay(true);
-            console.log('true');
         }
         return oldItem;
     }
-
-    //Modal
 
     Modal.setAppElement('#root')
 
@@ -101,35 +91,12 @@ const Container = () => {
         id: '',
         text: '',
         date: '',
-        progress: '',
+        progress: ''
     });
 
     function openModal(event) {
-
         setTodoItem(deleteFunction(event));
         setIsOpen(true);
-
-        // let index = TodoArr.indexOf((el) => {
-        //     return el.id === event.target.parentNode.parentNode.id;
-        // })
-
-        // let ModalItem = TodoArr[index];
-
-
-
-
-        // if (newArr.length === 0) {
-        //     setTodoArr([]);
-        //     showDisplay(false);
-        //     console.log('false');
-        // }
-        // else {
-        //     setTodoArr([...newArr])
-        //     showDisplay(true);
-        //     console.log('true');
-        // }
-
-
     }
 
     function afterOpenModal() {
@@ -137,10 +104,12 @@ const Container = () => {
     }
 
     function closeModal(formData) {
-        setTodoArr((prevState) => {
-            return [formData, ...prevState]
-        })
-        showDisplay(true);
+        if (formData.id) {
+            setTodoArr((prevState) => {
+                return [formData, ...prevState]
+            })
+            showDisplay(true);
+        }
         setIsOpen(false);
     }
 
@@ -182,25 +151,22 @@ const Container = () => {
     } else if (filteredArr.length > 0) {
         if (!isDisplay) {
             setDisplay(true);
-            console.log(isDisplay);
         }
     }
 
 
     return (
         <div className='container'>
-            {/* <button onClick={openModal}>Open Modal</button> */}
             <Modal
                 isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
+                // onAfterOpen={afterOpenModal}
+                // onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="Edit Modal"
             >
                 <h1>Edit Data</h1>
                 <Form onSaveForm={closeModal} arrLength={TodoArr.length} todoData={todoItem}></Form>
             </Modal>
-            {/* <ModalForm></ModalForm> */}
             <section>
                 <Form onSaveForm={formHandler} arrLength={TodoArr.length}></Form>
                 <DateManager filterDate={filterDate} onFilterDate={dateHandler}></DateManager>

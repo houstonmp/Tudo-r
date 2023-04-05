@@ -1,24 +1,33 @@
 import React, { useState } from 'react';
 import styles from './Form.module.css';
 
+let initForm = {};
+
 const Form = (props) => {
-    const [formData, setFormData] = useState({
-        enteredText: '',
-        enteredDate: '',
-        enteredProgress: ''
-    });
-
-
-    if (props.todoData !== undefined) {
-        if (props.todoData.text !== formData.enteredText) {
-            setFormData({
-                enteredText: props.todoData.text,
-                enteredDate: props.todoData.date,
-                enteredProgress: props.todoData.progress
-            });
-            console.log("Set data", props.todoData)
+    if (props.todoData) {
+        initForm = {
+            enteredText: props.todoData.text,
+            enteredDate: props.todoData.date.toISOString().split('T')[0],
+            enteredProgress: props.todoData.progress
+        }
+    } else {
+        initForm = {
+            enteredText: '',
+            enteredDate: '',
+            enteredProgress: ''
         }
     }
+
+    const [formData, setFormData] = useState(initForm);
+
+
+
+    // if (props.todoData !== undefined) {
+    //     if (props.todoData.text !== formData.enteredText) {
+    //         setFormData();
+    //         console.log("Set data", props.todoData)
+    //     }
+    // }
 
 
 
@@ -40,7 +49,15 @@ const Form = (props) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        const id = `t${props.arrLength + 1}`;
+        let id = '';
+        if (props.todoData) {
+            id = props.todoData.id;
+        } else {
+            id = `t${props.arrLength + 1}`;
+        }
+
+
+
 
         const inputData = {
             id: id,
@@ -48,7 +65,6 @@ const Form = (props) => {
             date: new Date(formData.enteredDate),
             progress: formData.enteredProgress
         }
-        console.log(inputData);
 
         props.onSaveForm(inputData);
         setFormData({
