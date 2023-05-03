@@ -14,7 +14,11 @@ This app was made to practice using React after learning the basics from [Maximi
 - Scroll through the month / filter the date as needed
 ## Demo - check it out [*here*](https://lustrous-bublanina-b8b4b7.netlify.app/)
 
-<Insert gif and link to demo>
+*Demo on Large Screen Device*  
+<img src="/src/assets/tudor-github.gif" alt="Tudo[r] Large Image" width="60%" />
+
+*Demo on Small Screen Device*  
+<img src="/src/assets/tudor-github-small.gif" alt="Tudo[r] Small Image" width="30%" />
 
 
 ## Roadmap - (Goals and ToDos)
@@ -29,9 +33,10 @@ The initial design was first drawn up in Figma and then produced with React.js
 
 ### Figma Prototype
 
-<Insert Figma Image>
+*Demo on Small Screen Device*  
+<img src="/src/assets/tudor-figma.png" alt="Tudo[r] Figma Image"/>
 
-*Original design within Figma*
+*Original design in Figma*
 
 
 
