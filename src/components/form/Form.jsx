@@ -56,13 +56,12 @@ const Form = (props) => {
             id = `t${props.arrLength + 1}`;
         }
 
-
-
-
         const inputData = {
             id: id,
             text: formData.enteredText,
-            date: new Date(formData.enteredDate),
+            date: new Date(formData.enteredDate.replace(/-/g, '\/').replace(/T.+/, '')),
+            //Date will perpetually be off by one if you input the date YYYY MM DD
+            //This trick fixes the issue
             progress: formData.enteredProgress
         }
 

@@ -23,8 +23,6 @@ This app was made to practice using React after learning the basics from [Maximi
 
 ## Roadmap - (Goals and ToDos)
 
-- Save data to localStorage still needs to be implemented.
-- Add Close / Expand Logic to the add ToDo section.
 ## My Design Process
 
 I decided to create a Tudor style ToDo list complete with a color palette and a Tudor era Rose. The color palette is simple and uses a lot of tans and browns with some red green and yellow thrown in to brighten it up and call attention to the main ToDo list.

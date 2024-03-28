@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import TodoMan from './todos/TodoMan'
 import './Cont.css'
@@ -42,7 +42,7 @@ const INITIAL_TODO = [
 ]
 
 const Container = () => {
-    const [TodoArr, setTodoArr] = useState(INITIAL_TODO);
+    const [TodoArr, setTodoArr] = useState([]);
     const [isDisplay, setDisplay] = useState(true);
     const [filterDate, setDate] = useState({
         month: TODAYS_DATE.getMonth(),
@@ -53,6 +53,16 @@ const Container = () => {
     const dateHandler = (dateObj) => {
         setDate(dateObj);
     }
+
+    useEffect(() => {
+        let todos = JSON.parse(localStorage.getItem("saved-todos"));
+        let saved = todos ? todos.map(todo => {
+            todo.date = new Date(todo.date);
+            return todo;
+        }) : null;
+
+        saved ? setTodoArr(saved) : setTodoArr(INITIAL_TODO);
+    }, [])
 
     const deleteFunction = (event) => {
         let currentTodoId = event.target.parentNode.parentNode.id;
@@ -80,6 +90,7 @@ const Container = () => {
             setTodoArr([...newArr])
             showDisplay(true);
         }
+        localStorage.setItem("saved-todos", JSON.stringify([...newArr]));
         return oldItem;
     }
 
@@ -106,6 +117,7 @@ const Container = () => {
     function closeModal(formData) {
         if (formData.id) {
             setTodoArr((prevState) => {
+                formData && localStorage.setItem("saved-todos", JSON.stringify([formData, ...prevState]));
                 return [formData, ...prevState]
             })
             showDisplay(true);
@@ -117,6 +129,7 @@ const Container = () => {
 
     const formHandler = (formData) => {
         setTodoArr((prevState) => {
+            formData && localStorage.setItem("saved-todos", JSON.stringify([formData, ...prevState]));
             return [formData, ...prevState]
         })
         showDisplay(true);
