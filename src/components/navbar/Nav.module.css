@@ -25,16 +25,10 @@ nav h2 {
     font-weight: 400;
 }
 
-img {
+.logo {
     position: absolute;
     top: -1rem;
     left: -3rem;
     width: 10rem;
     transform: rotate(45deg);
-    /* position: absolute;
-    bottom: -4rem;
-    left: 0;
-    width: 10rem;
-    transform: rotateX(180deg); */
-
 }
