@@ -1,8 +1,9 @@
 .date-man {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     margin: 2rem 0;
+    gap: 20px;
 }
 
 .date-man *:hover {
@@ -12,11 +13,25 @@
 .filter {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .filter * {
     margin: 15px;
+}
+
+.filter p {
+    width: 100%;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.filter select {
+    margin: 0;
+    flex-basis: 40%;
+    flex-grow: 1;
+    padding: 10px;
 }
 
 .date-man span {

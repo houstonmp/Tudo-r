@@ -1,8 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Junge&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Kapakana:wght@300..400&display=swap');
+
+
+.kapakana-default {
+  font-family: "Kapakana", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.junge-default {
+  font-family: 'Junge', serif;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Junge', serif;
+  font-family: "Kapakana", cursive;
+  font-size: 30px;
   height: 100vh;
+  background-color: #E2D9D1;
 }

@@ -181,16 +181,15 @@ const DateManager = (props) => {
 
     return (
         <div className='datePicker' onLoad={setDates}>
-            <div className="filter">
-                <p>Filter by:</p>
+            <div className={styles.filter}>
+                <p>—Month of Record—</p>
                 <DateSelect valueType="month" value={props.filterDate.month} options={options.months} onSaveDate={monthHandler} />
                 <DateSelect valueType="year" value={props.filterDate.year} options={options.years} onSaveDate={yearHandler} />
             </div>
             <article className={`${styles['date-man']}`}>
-                {displayArrow.left && <span className="material-symbols-outlined" onClick={moveLeft}>
+                {<span className="material-symbols-outlined" onClick={moveLeft}>
                     arrow_left
                 </span>}
-                {/* <Form /> */}
                 {
 
                     filterArr.map((el, index) => {
@@ -202,7 +201,7 @@ const DateManager = (props) => {
                         }
                     })
                 }
-                {displayArrow.right && <span className="material-symbols-outlined" onClick={moveRight}>
+                {<span className="material-symbols-outlined" onClick={moveRight}>
                     arrow_right
                 </span>}
 

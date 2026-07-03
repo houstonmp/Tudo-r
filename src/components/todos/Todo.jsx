@@ -2,7 +2,8 @@ import './TodoMan.css';
 
 const Todo = (props) => {
     return (
-        <aside id={props.id} className={props.progress}>
+        <aside id={props.id}>
+            <div className={`progress-circle ` + props.progress}></div>
             <span className='text'>
                 <h3 >{props.text}</h3>
             </span>
@@ -13,7 +14,7 @@ const Todo = (props) => {
                 </span>
             </a>
             <a className="icons" onClick={props.onDel}>
-                <span className="material-symbols-outlined ">
+                <span className="material-symbols-outlined">
                     delete
                 </span>
             </a>

@@ -1,0 +1,14 @@
+footer {
+    background-color: #20484C;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+footer p {
+    font-size: 1rem;
+    font-style: italic;
+}

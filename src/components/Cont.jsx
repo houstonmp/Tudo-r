@@ -4,7 +4,18 @@ import TodoMan from './todos/TodoMan'
 import './Cont.css'
 import DateManager from './datecomponent/DateManager';
 import Form from './form/Form'
+
+// ModalForm.jsx
 import Modal from 'react-modal';
+
+const ModalForm = ({ isOpen, onClose, todoItem, arrLength }) => {
+    return (
+        <Modal isOpen={isOpen} onRequestClose={onClose} style={customStyles}>
+            <h2>Edit Data</h2>
+            <Form onSaveForm={onClose} arrLength={arrLength} todoData={todoItem} />
+        </Modal>
+    )
+}
 
 const customStyles = {
     content: {
@@ -23,19 +34,19 @@ const TODAYS_DATE = new Date();
 const INITIAL_TODO = [
     {
         id: 't1',
-        text: 'Cook Dinner',
+        text: 'Retire at a Reasonable Hour',
         date: TODAYS_DATE,
         progress: 'finished',
     },
     {
         id: 't2',
-        text: 'Eat Dinner',
+        text: 'Review the Guild\'s Proposal',
         date: TODAYS_DATE,
         progress: 'progress',
     },
     {
         id: 't3',
-        text: 'Wash Dishes',
+        text: 'Settle Accounts with the Merchant',
         date: TODAYS_DATE,
         progress: 'unfinished',
     }
@@ -170,23 +181,15 @@ const Container = () => {
 
     return (
         <div className='container'>
-            <Modal
-                isOpen={modalIsOpen}
-                // onAfterOpen={afterOpenModal}
-                // onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="Edit Modal"
-            >
-                <h1>Edit Data</h1>
-                <Form onSaveForm={closeModal} arrLength={TodoArr.length} todoData={todoItem}></Form>
-            </Modal>
-            <section>
-                <Form onSaveForm={formHandler} arrLength={TodoArr.length}></Form>
-                <DateManager filterDate={filterDate} onFilterDate={dateHandler}></DateManager>
-            </section>
-            <section>
-                <TodoMan onEdit={openModal} isDisplay={isDisplay} TodoArr={filteredArr} delTodo={deleteHandler} ></TodoMan>
-            </section>
+            <ModalForm 
+                isOpen={modalIsOpen} 
+                onClose={closeModal} 
+                todoItem={todoItem} 
+                arrLength={TodoArr.length}
+            />
+            <Form onSaveForm={formHandler} arrLength={TodoArr.length}></Form>
+            <DateManager filterDate={filterDate} onFilterDate={dateHandler}></DateManager>
+            <TodoMan onEdit={openModal} isDisplay={isDisplay} TodoArr={filteredArr} delTodo={deleteHandler} ></TodoMan>
         </div>
 
 

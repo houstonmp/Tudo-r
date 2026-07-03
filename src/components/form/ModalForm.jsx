@@ -5,9 +5,7 @@ const ModalForm = () => {
 
     return (
         <div className="modal">
-            <Form>
-
-            </Form>
+            <Form></Form>
         </div>
     )
 }

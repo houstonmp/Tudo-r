@@ -1,18 +1,28 @@
 nav {
     background-color: #3e3529;
     color: white;
-    height: 80px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
+    gap: 20px;
+    padding: 1rem;
 }
 
 nav h1 {
     text-align: center;
     font-size: 2.5rem;
     margin: 0;
+    flex-grow: 1;
+    font-weight: 300;
+}
+nav h2 {
+    text-align: center;
+    margin: 0;
+    color: #FFD08E;
+    font-size: 40px;
+    font-weight: 400;
 }
 
 img {

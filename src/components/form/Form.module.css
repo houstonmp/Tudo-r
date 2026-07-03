@@ -2,39 +2,82 @@
     background-color: #E0D3BD;
     height: 18rem;
     margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 7px double #3e3529;
+    padding: 2rem;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr) auto;
+    justify-items: center;
+    border: 1px solid #3e3529;
+    outline: 4px solid #3e3529;
+    outline-offset: -10px;
+    width: 100%;
+    max-width: 960px;
+    gap: 10px;
 }
 
-.form * {
+.form > * {
     margin-top: .4rem;
-    flex-grow: 1;
+
 }
 
-.form input {
-    height: 1.5rem;
-    width: 50%;
+button, input[type="submit"] {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #e0d3bd00;
+    border: #e0d3bd00;
 }
 
-.form select {
-    height: 1.5rem;
-    width: 50%;
+input[type="date"], 
+input[type="text"], 
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #CCBDA3;
+    border: #e0d3bd00;
+    font-family: 'kapakana', cursive;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 11px;
 }
 
 .inputItem {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     width: 70%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: space-around;
+    align-items: stretch;
+    margin: 0;
+}
+
+.inputItem > input:-webkit-autofill,
+.inputItem > input:-webkit-autofill:hover,
+.inputItem > input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #CCBDA3 inset;
+    box-shadow: 0 0 0px 1000px #CCBDA3 inset;
+    -webkit-text-fill-color: #3e3529;
+}
+
+.inputItem > label {
+    align-self: center;
+    text-align: right;
+    padding-right: 1rem;
+}
+
+.inputItem > input,
+.inputItem > select {
+    font-family: 'kapakana', cursive;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 11px;
+    background-color: #CCBDA3;
+    border: 1px solid #e0d3bd00;
+    color: #3e3529;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .submitItem {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
 }
 
 .button {
@@ -42,18 +85,41 @@
     outline: 0;
     border: 0;
     cursor: pointer;
-    background: #3e3529;
-    color: white;
+    color: black;
     border-radius: 8px;
-    padding: 14px 24px 16px;
-    font-size: 18px;
-    font-weight: 700;
+    padding: none;
+    margin: none;
+    font-size: 30px;
+    font-weight: 500;
     line-height: 1;
     transition: transform 200ms, background 200ms;
     max-height: 30px;
+    padding: 1rem 0 2rem;
 }
 
 .button:hover {
-    background-color: #705a3d;
     transform: translateY(-2px);
+    color: #C40000;
+}
+
+.datePickerWrapper {
+    width: 100%;
+}
+
+.dateInput {
+    width: 100%;
+    background-color: #CCBDA3;
+    border: 1px solid #e0d3bd00;
+    border-radius: 11px;
+    font-family: 'kapakana', cursive;
+    font-size: 30px;
+    text-align: center;
+    color: #3e3529;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.dateInput:focus {
+    outline: none;
+    border: 2px solid #3e3529;
 }

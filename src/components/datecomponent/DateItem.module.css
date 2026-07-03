@@ -1,11 +1,13 @@
 .date {
     width: 4rem;
     height: 4rem;
-    background-color: #D9D9D9;
+    background-color: #FFFFD5;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    font-size: 20px;
+    border-radius: 9px;
 }
 
 .date:hover {

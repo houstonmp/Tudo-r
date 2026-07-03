@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import styles from './Form.module.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 let initForm = {};
 
 const Form = (props) => {
+
+    
+    const [inputType, setInputType] = useState('text');
+    const todayFormatted = new Date().toLocaleDateString('en-US', { 
+        month: 'long', day: 'numeric', year: 'numeric' 
+    });
     if (props.todoData) {
         initForm = {
             enteredText: props.todoData.text,
@@ -59,9 +67,9 @@ const Form = (props) => {
         const inputData = {
             id: id,
             text: formData.enteredText,
-            date: new Date(formData.enteredDate.replace(/-/g, '\/').replace(/T.+/, '')),
-            //Date will perpetually be off by one if you input the date YYYY MM DD
-            //This trick fixes the issue
+            date: formData.enteredDate instanceof Date 
+                ? formData.enteredDate 
+                : new Date(formData.enteredDate),
             progress: formData.enteredProgress
         }
 
@@ -70,25 +78,33 @@ const Form = (props) => {
             enteredText: '',
             enteredDate: '',
             enteredProgress: ''
-        }
-        )
+        })
     }
 
 
     return <form className={styles.form} onSubmit={submitHandler}>
 
         <div className={styles.inputItem}>
-            <label>Tudo:</label>
-            <input type="text" name="Tudo" value={formData.enteredText} placeholder="Tudo" onChange={onChangeText} required />
+            <label>The Matter:</label>
+            <input type="text" name="Tudo" value={formData.enteredText} placeholder="Tidy the Parlour" onChange={onChangeText} required />
 
         </div>
         <div className={styles.inputItem}>
-            <label type="date" >Finish By:</label>
-            <input type="date" value={formData.enteredDate} placeholder="Finish Date: mm/dd/yyyy" onChange={onChangeDate} required />
+            <label>To Be Resolved By:</label>
+            <DatePicker
+                placeholderText={todayFormatted}
+                selected={formData.enteredDate ? new Date(formData.enteredDate) : null}
+                onChange={(date) => onChangeDate({ target: { value: date } })}
+                dateFormat="MMMM do, yyyy"
+                required
+                customInput={<input className={styles.dateInput} />}
+                wrapperClassName={styles.datePickerWrapper}
+                portalId="root"
+            />
         </div>
 
         <div className={styles.inputItem}>
-            <label>Progress:</label>
+            <label>State of Affairs:</label>
             <select value={formData.enteredProgress} onChange={onChangeProgress} required>
                 <option value="">--Please Select an Option--</option>
                 <option value="unfinished">Unfinished</option>
@@ -96,8 +112,8 @@ const Form = (props) => {
                 <option value="finished">Finished</option>
             </select>
         </div>
-        <div className='submitItem'>
-            <button className="button" type="submit">Add Tudo</button>
+        <div className={styles.submitItem}>
+            <button className={styles.button + ' kapakana-default'} type="submit">+ Add Tudo</button>
         </div>
     </form >
 }
